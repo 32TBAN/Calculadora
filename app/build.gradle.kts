@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "Esteban.G.myapplication"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "Esteban.G.myapplication"
