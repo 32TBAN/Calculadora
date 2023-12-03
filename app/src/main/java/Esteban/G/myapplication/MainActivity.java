@@ -72,8 +72,17 @@ private  String operand="";
             double respuesta = 0;
 
             for (int i = 0; i < ordenar.length; i++) {
-                if (ordenar[i] == "/" && ordenar[i] != ""){
+                if (Objects.equals(ordenar[i], "/") && !Objects.equals(ordenar[i+1], "")){
                     respuesta = Double.parseDouble(ordenar[i-1]) / Double.parseDouble(ordenar[i+1]);
+                    ordenar[i-1] = String.valueOf(respuesta);
+                    ordenar[i] = "";
+                    ordenar[i+1] = "";
+                }
+            }
+
+            for (int i = 0; i < ordenar.length; i++) {
+                if (Objects.equals(ordenar[i], "*") && !Objects.equals(ordenar[i+1], "")){
+                    respuesta = Double.parseDouble(ordenar[i-1]) * Double.parseDouble(ordenar[i+1]);
                     ordenar[i-1] = String.valueOf(respuesta);
                     ordenar[i] = "";
                     ordenar[i+1] = "";
