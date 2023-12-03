@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,8 +37,8 @@ private  String operand="";
         Button button = (Button) view;
         operand += button.getText().toString();
         if(operand.matches("[+\\-*/]")){
-            Toast.makeText(this,"Fomato no válido",Toast.LENGTH_SHORT);
-        }else if (operand == "."){
+            Toast.makeText(this,"Fomato no válido",Toast.LENGTH_SHORT).show();
+        }else if (Objects.equals(operand, ".")){
             operand = "0.";
             editTextExprecion.setText(operand);
             deleteButton.setEnabled(true);
@@ -60,34 +61,26 @@ private  String operand="";
 
     public void onClickCalculate(View view) {
         String ejemplo = "12-10/3+20-(50-20)*3"; // Ejemplo de cadena
-        //operand = ordenar(operand);
         textViewResult.setText(Calculo(operand));
-    }
-
-    private String ordenar(String operand) {
-        String result ="";
-
-        while (operand.contains("(") && operand.contains(")")){
-            int startIndex = operand.lastIndexOf('(');
-            int endIndex = operand.indexOf(')', startIndex);
-            String innerExpression = operand.substring(startIndex + 1, endIndex);
-
-            // Resuelve las operaciones dentro de los paréntesis
-            String innerResult = Calculo(innerExpression);
-
-            // Reemplaza la expresión dentro de los paréntesis con el resultado
-            operand = operand.substring(0, startIndex) + innerResult + operand.substring(endIndex + 1);
-        }
-
-        return result;
     }
 
     private String Calculo(String operacion) {
         String[] numeros = operacion.split("[+\\-*/]");
 
         if (numeros.length >= 2){
+            String [] ordenar = operand.split("");
             double respuesta = 0;
-            for (int i = 0; i <= (numeros.length-1); i++) {
+
+            for (int i = 0; i < ordenar.length; i++) {
+                if (ordenar[i] == "/" && ordenar[i] != ""){
+                    respuesta = Double.parseDouble(ordenar[i-1]) / Double.parseDouble(ordenar[i+1]);
+                    ordenar[i-1] = String.valueOf(respuesta);
+                    ordenar[i] = "";
+                    ordenar[i+1] = "";
+                }
+            }
+
+            for (int i = 0; i < (numeros.length-1); i++) {
                 double operando1 = Double.parseDouble(numeros[i]);
                 double operando2 = Double.parseDouble(numeros[i+1]);
 
