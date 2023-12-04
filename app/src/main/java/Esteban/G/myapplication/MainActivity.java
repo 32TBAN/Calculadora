@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -50,7 +51,6 @@ private  String operand="";
     }
 
     public void onClickDelete(View view) {
-
         operand = operand.substring(0,operand.length()-1);
         editTextExprecion.setText(operand);
 
@@ -60,58 +60,116 @@ private  String operand="";
     }
 
     public void onClickCalculate(View view) {
-        String ejemplo = "12-10/3+20-(50-20)*3"; // Ejemplo de cadena
+       // String ejemplo = "12-10/3+20-(50-20)*3"; // Ejemplo de cadena
         textViewResult.setText(Calculo(operand));
     }
 
     private String Calculo(String operacion) {
-        String[] numeros = operacion.split("[+\\-*/]");
+        String[] elementos = operacion.split("(?=[+\\-*/^()])|(?<=[+\\-*/^()])");
 
-        if (numeros.length >= 2){
-            String [] ordenar = operand.split("");
-            double respuesta = 0;
+        if (elementos.length >= 3){
 
-            for (int i = 0; i < ordenar.length; i++) {
-                if (Objects.equals(ordenar[i], "/") && !Objects.equals(ordenar[i+1], "")){
-                    respuesta = Double.parseDouble(ordenar[i-1]) / Double.parseDouble(ordenar[i+1]);
-                    ordenar[i-1] = String.valueOf(respuesta);
-                    ordenar[i] = "";
-                    ordenar[i+1] = "";
+            for (int i = 0; i < elementos.length; i++) {
+                if (Objects.equals(elementos[i], "(") && !Objects.equals(elementos[i+1], "")){
+                    String [] parentesis = new String[elementos.length];
+                    Arrays.fill(parentesis, "");
+                    int ult = i;
+                    int j = 0;
+                    i++;
+                    while (!Objects.equals(elementos[i], ")")) {
+                        parentesis[j] = elementos[i];
+                        elementos[i] = "";
+                        i++;
+                        j++;
+                    };
+                    elementos[ult] = OrdenSigno(parentesis);
+                    Ordenar(elementos);
+                    i=0;
                 }
             }
-
-            for (int i = 0; i < ordenar.length; i++) {
-                if (Objects.equals(ordenar[i], "*") && !Objects.equals(ordenar[i+1], "")){
-                    respuesta = Double.parseDouble(ordenar[i-1]) * Double.parseDouble(ordenar[i+1]);
-                    ordenar[i-1] = String.valueOf(respuesta);
-                    ordenar[i] = "";
-                    ordenar[i+1] = "";
-                }
-            }
-
-            for (int i = 0; i < (numeros.length-1); i++) {
-                double operando1 = Double.parseDouble(numeros[i]);
-                double operando2 = Double.parseDouble(numeros[i+1]);
-
-                if (operacion.contains("+")) {
-                     respuesta = operando1 + operando2;
-                } else if (operacion.contains("-")) {
-                    respuesta =operando1 - operando2;
-                } else if (operacion.contains("/")) {
-                    if (operando2 != 0) {
-                        respuesta =operando1 / operando2;
-                    } else {
-                        return  "Error: División por cero";
-                    }
-                } else if (operacion.contains("*")) {
-                    respuesta =operando1 * operando2;
-                }
-                numeros[i+1] = String.valueOf(respuesta);
-            }
-
-            return String.valueOf(respuesta);
-
+            return OrdenSigno(elementos);
         }else{return "Formato usado no valido";}
+    }
+
+    private String OrdenSigno(String[] elementos) {
+        double respuesta = 0;
+
+        for (int i = 0; i < elementos.length; i++) {
+            if (Objects.equals(elementos[i], "/") && !Objects.equals(elementos[i+1], "")){
+
+                if ( Double.parseDouble(elementos[i-1]) != 0) {
+                    respuesta = Double.parseDouble(elementos[i-1]) / Double.parseDouble(elementos[i+1]);
+                    elementos[i-1] = String.valueOf(respuesta);
+                    elementos[i] = "";
+                    elementos[i+1] = "";
+                    Ordenar(elementos);
+                    i=0;
+
+                } else {
+                    return  "Error: División por cero";
+                }
+            }
+        }
+
+        for (int i = 0; i < elementos.length; i++) {
+            if (Objects.equals(elementos[i], "*") && !Objects.equals(elementos[i+1], "")){
+                respuesta = Double.parseDouble(elementos[i-1]) * Double.parseDouble(elementos[i+1]);
+                elementos[i-1] = String.valueOf(respuesta);
+                elementos[i] = "";
+                elementos[i+1] = "";
+                Ordenar(elementos);
+                i=0;
+
+            }
+        }
+
+        for (int i = 0; i < elementos.length; i++) {
+            if (Objects.equals(elementos[i], "-") && !Objects.equals(elementos[i+1], "")){
+                respuesta = Double.parseDouble(elementos[i-1]) - Double.parseDouble(elementos[i+1]);
+                elementos[i-1] = String.valueOf(respuesta);
+                elementos[i] = "";
+                elementos[i+1] = "";
+                Ordenar(elementos);
+                i=0;
+
+            }
+        }
+
+        for (int i = 0; i < elementos.length; i++) {
+            if (Objects.equals(elementos[i], "+") && !Objects.equals(elementos[i+1], "")){
+                respuesta = Double.parseDouble(elementos[i-1]) + Double.parseDouble(elementos[i+1]);
+                elementos[i-1] = String.valueOf(respuesta);
+                elementos[i] = "";
+                elementos[i+1] = "";
+                Ordenar(elementos);
+                i=0;
+
+            }
+        }
+        return String.valueOf(respuesta);
+    }
+
+    private String[] Ordenar(String [] elementos) {
+
+        for (int i = 0; i < elementos.length; i++) {
+            if (elementos[i].equals("(") || elementos[i].equals(")")){
+                elementos[i] = "";
+            }
+        }
+
+        for (int i = 0; i < elementos.length; i++) {
+            if (elementos[i].equals("")){
+                for (int j = i; j < elementos.length; j++) {
+                    if (!elementos[j].equals("")){
+                        elementos[i] = elementos[j];
+                        elementos[j] = "";
+                        break;
+                    }
+                }
+            }
+        }
+
+        return elementos;
     }
 
 

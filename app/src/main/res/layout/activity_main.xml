@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="376dp"
-        android:layout_height="29dp"
+        android:layout_height="49dp"
         android:layout_below="@+id/etInput"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -33,156 +33,159 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/etInput"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="80dp"
         android:columnCount="4">
 
         <Button
-            android:id="@+id/btnDot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButtons"
-            android:text="." />
-
-        <Button
-            android:id="@+id/btnPow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:onClick="onClickButtons"
-            android:text="^" />
-
-        <Button
-            android:id="@+id/btnPorcent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:onClick="onClickButtons"
-            android:text="%" />
-
-        <Button
             android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickDelete"
             android:text="Delete" />
 
+
+
+        <Button
+            android:id="@+id/btnP1"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:onClick="onClickButtons"
+            android:text="(" />
+
+        <Button
+            android:id="@+id/btnP2"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:onClick="onClickButtons"
+            android:text=")" />
+
+
+        <Button
+            android:id="@+id/btnDivision"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:onClick="onClickButtons"
+            android:text="/" />
+
         <Button
             android:id="@+id/btn7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="7" />
 
         <Button
             android:id="@+id/btn8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="8" />
 
         <Button
             android:id="@+id/btn9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="9" />
 
+
+
         <Button
-            android:id="@+id/btnDivision"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn1X"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
-            android:text="/" />
+            android:text="*" />
 
         <Button
             android:id="@+id/btn4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="4" />
 
         <Button
             android:id="@+id/btn5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="5" />
 
+
         <Button
             android:id="@+id/btn6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="6" />
 
+
         <Button
-            android:id="@+id/btn1X"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
-            android:text="*" />
+            android:text="-" />
 
         <Button
             android:id="@+id/btn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="1" />
 
         <Button
             android:id="@+id/btn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="2" />
 
         <Button
             android:id="@+id/btn3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="3" />
 
-        <Button
-            android:id="@+id/btn_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButtons"
-            android:text="-" />
 
-        <Button
-            android:id="@+id/btnP1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButtons"
-            android:text="(" />
-
-        <Button
-            android:id="@+id/btn0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButtons"
-            android:text="0" />
-
-        <Button
-            android:id="@+id/btnP2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButtons"
-            android:text=")" />
 
         <Button
             android:id="@+id/btnPlus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickButtons"
             android:text="+" />
 
         <Button
+            android:id="@+id/btnDisable"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:onClick="onClickCalculate"
+            android:text="_"
+            android:enabled="false"/>
+
+
+        <Button
+            android:id="@+id/btn0"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:onClick="onClickButtons"
+            android:text="0" />
+
+
+        <Button
+            android:id="@+id/btnDot"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:onClick="onClickButtons"
+            android:text="." />
+
+        <Button
             android:id="@+id/btnEquals"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:onClick="onClickCalculate"
             android:text="=" />
     </GridLayout>
